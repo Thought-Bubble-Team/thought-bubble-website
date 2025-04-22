@@ -1,0 +1,120 @@
+---
+interface Props {
+  type?: "button" | "submit" | "reset";
+  variant?: "primary" | "secondary";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  fullWidth?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
+  class?: string;
+}
+
+const {
+  type = "button",
+  variant = "primary",
+  size = "md",
+  fullWidth = false,
+  disabled = false,
+  onClick,
+  class: className = "",
+} = Astro.props;
+
+// Size mapping
+const sizeMap = {
+  xs: {
+    padding: "4px 8px",
+    fontSize: "8px",
+  },
+  sm: {
+    padding: "8px 12px",
+    fontSize: "12px",
+  },
+  md: {
+    padding: "16px 16px",
+    fontSize: "16px",
+  },
+  lg: {
+    padding: "24px 20px",
+    fontSize: "20px",
+  },
+  xl: {
+    padding: "30px 24px",
+    fontSize: "24px",
+  },
+};
+
+// Variant styles
+const variantStyles = {
+  primary: {
+    backgroundColor: "#CB806A",
+    color: "#FFFFFF",
+    hoverBg: "#b97359",
+  },
+  secondary: {
+    backgroundColor: "#E9DED9",
+    color: "#443E3B",
+    hoverBg: "#ded0c9",
+  },
+};
+
+const selectedSize = sizeMap[size];
+const selectedVariant = variantStyles[variant];
+---
+
+<button
+  type={type}
+  class:list={[
+    "button",
+    className,
+    { "full-width": fullWidth },
+    { disabled: disabled },
+  ]}
+  disabled={disabled}
+>
+  <slot />
+</button>
+
+<style define:vars={{
+  bgColor: selectedVariant.backgroundColor,
+  textColor: selectedVariant.color,
+  hoverBg: selectedVariant.hoverBg,
+  padding: selectedSize.padding,
+  fontSize: selectedSize.fontSize,
+}}>
+  .button {
+    background-color: var(--bgColor);
+    color: var(--textColor);
+    border: none;
+    border-radius: 12px;
+    padding: var(--padding);
+    font-size: var(--fontSize);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+    box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.15);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .button:hover:not(.disabled) {
+    background-color: var(--hoverBg);
+    transform: translateY(-2px);
+    box-shadow: -4px 6px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .button:active:not(.disabled) {
+    transform: translateY(0);
+    box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .button.full-width {
+    width: 100%;
+  }
+
+  .button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+</style>

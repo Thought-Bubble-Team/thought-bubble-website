@@ -1,0 +1,140 @@
+---
+interface Props {
+  type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search";
+  name: string;
+  id?: string;
+  placeholder?: string;
+  value?: string | number;
+  required?: boolean;
+  disabled?: boolean;
+  size?: "sm" | "md" | "lg";
+  fullWidth?: boolean;
+  label?: string;
+  error?: string;
+  class?: string;
+}
+
+const {
+  type = "text",
+  name,
+  id = name,
+  placeholder = "",
+  value = "",
+  required = false,
+  disabled = false,
+  size = "md",
+  fullWidth = false,
+  label,
+  error,
+  class: className = "",
+} = Astro.props;
+
+// Size mapping
+const sizeMap = {
+  sm: {
+    padding: "8px 12px",
+    fontSize: "12px",
+    height: "36px",
+  },
+  md: {
+    padding: "12px 16px",
+    fontSize: "16px",
+    height: "48px",
+  },
+  lg: {
+    padding: "16px 24px",
+    fontSize: "20px",
+    height: "56px",
+  },
+};
+
+const selectedSize = sizeMap[size];
+---
+
+<div class:list={["input-wrapper", { "full-width": fullWidth }, className]}>
+  {label && <label for={id} class="input-label">{label}</label>}
+  <div class:list={["input-container", { error: error }]}>
+    <input
+      type={type}
+      name={name}
+      id={id}
+      placeholder={placeholder}
+      value={value}
+      required={required}
+      disabled={disabled}
+      class:list={["input-field", size]}
+    />
+  </div>
+  {error && <span class="error-message">{error}</span>}
+</div>
+
+<style define:vars={{
+  padding: selectedSize.padding,
+  fontSize: selectedSize.fontSize,
+  height: selectedSize.height,
+  backgroundColor: "#F6EFEC",
+  textColor: "#443E3B",
+  borderColor: "#E9DED9",
+  errorColor: "#CB806A",
+}}>
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: sans-serif;
+  }
+
+  .input-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--textColor);
+  }
+
+  .input-container {
+    position: relative;
+    border-radius: 12px;
+    background-color: var(--backgroundColor);
+    box-shadow: -4px 4px 8px rgba(68, 62, 59, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .input-container:focus-within {
+    box-shadow: -4px 4px 12px rgba(68, 62, 59, 0.15);
+  }
+
+  .input-field {
+    width: 100%;
+    height: var(--height);
+    padding: var(--padding);
+    font-size: var(--fontSize);
+    background: transparent;
+    border: none;
+    color: var(--textColor);
+    outline: none;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+
+  .input-field::placeholder {
+    color: rgba(68, 62, 59, 0.5);
+  }
+
+  .input-container.error {
+    border: 1px solid var(--errorColor);
+  }
+
+  .error-message {
+    color: var(--errorColor);
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .input-field:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+</style>
