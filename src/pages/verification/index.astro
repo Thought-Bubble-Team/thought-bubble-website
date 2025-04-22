@@ -1,11 +1,140 @@
 ---
 import Layout from "../../layouts/Layout.astro"
+import Button from "../../components/Button.astro"
 ---
 
 <Layout>
-    <div>
-        <main>
-            <p>Email Verified</p>
-        </main>
+    <div class="verification-container">
+        <div class="verification-card">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h1>Account Verified</h1>
+            <p>Your account has been successfully verified. You can now access all features of our platform.</p>
+            <div class="button-container">
+                <Button variant="primary" size="md">Go to Dashboard</Button>
+            </div>
+        </div>
     </div>
 </Layout>
+
+<style>
+    .verification-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+        background-color: #F6EFEC;
+        font-family: sans-serif;
+    }
+
+    .verification-card {
+        background-color: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: -4px 4px 8px rgba(68, 62, 59, 0.1);
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .verification-card:hover {
+        box-shadow: -4px 6px 10px rgba(68, 62, 59, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .success-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        background-color: #E9DED9;
+        border-radius: 50%;
+        margin-bottom: 24px;
+        color: #CB806A;
+    }
+
+    h1 {
+        color: #443E3B;
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    p {
+        color: rgba(68, 62, 59, 0.8);
+        margin-bottom: 32px;
+        line-height: 1.6;
+        font-size: 16px;
+    }
+
+    .button-container {
+        margin-top: 24px;
+    }
+</style>
+
+<style>
+    .verification-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+        background-color: #F6EFEC;
+        font-family: sans-serif;
+    }
+
+    .verification-card {
+        background-color: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: -4px 4px 8px rgba(68, 62, 59, 0.1);
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .verification-card:hover {
+        box-shadow: -4px 6px 10px rgba(68, 62, 59, 0.15);
+        transform: translateY(-2px);
+    }
+
+    .success-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        background-color: #E9DED9;
+        border-radius: 50%;
+        margin-bottom: 24px;
+        color: #CB806A;
+    }
+
+    h1 {
+        color: #443E3B;
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    p {
+        color: rgba(68, 62, 59, 0.8);
+        margin-bottom: 32px;
+        line-height: 1.6;
+        font-size: 16px;
+    }
+
+    .button-container {
+        margin-top: 24px;
+    }
+</style>
