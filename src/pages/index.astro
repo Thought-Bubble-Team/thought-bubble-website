@@ -7,6 +7,7 @@ import { Image } from 'astro:assets';
 import screenshot1 from '../assets/screenshots/Screenshot 2025-03-04 185101.png';
 import screenshot2 from '../assets/screenshots/Screenshot 2025-03-04 190200.png';
 import screenshot3 from '../assets/screenshots/Screenshot 2025-03-04 190244.png';
+import qrCode from "../assets/qrCode.png";
 ---
 
 <Layout>
@@ -14,7 +15,7 @@ import screenshot3 from '../assets/screenshots/Screenshot 2025-03-04 190244.png'
 		<!-- Left Container with Product Info -->
 		<div class="product-info-container">
 			<div class="product-content">
-				<h1 class="product-title">ThoughtBubble</h1>
+				<h1 class="product-title">Thought Bubble</h1>
 				<p class="product-tagline">Capture ideas effortlessly, organize thoughts beautifully</p>
 				<div class="cta-container">
 					<a href="https://github.com/Thought-Bubble-Team/thought-bubble-app" target="_blank" rel="noopener noreferrer">
@@ -25,8 +26,14 @@ import screenshot3 from '../assets/screenshots/Screenshot 2025-03-04 190244.png'
 								<line x1="12" y1="15" x2="12" y2="3"></line>
 							</svg>
 							Download Now
+							<span>v0.4.0</span>
 						</Button>
 					</a>
+					<div style="margin-top: 2rem">
+						<a href="https://bit.ly/thought-bubble-v040">
+							<Image src={qrCode} alt="Thought Bubble Download Link QR CODE" width={300} height={300}/>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
